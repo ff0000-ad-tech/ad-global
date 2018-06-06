@@ -2,14 +2,14 @@
 	*
 	*
 	*/
-export function getDeployProfile(id) {
+function getDeployProfile(id) {
 	for (var i = 0; i < environments.length; i++) {
 		if (environments[i].id === id) return environments[i]
 	}
 	return false
 }
 
-export function getQueryParams() {
+function getQueryParams() {
 	var queryParams = {}
 	var query = window.location.href.split('?')
 	if (query.length > 1) {
@@ -22,7 +22,7 @@ export function getQueryParams() {
 	return queryParams
 }
 
-export function matchProtocolTo(_url) {
+function matchProtocolTo(_url) {
 	var noProtocol = _url.search(/^\/\//) > -1
 	if (_url.search(/^http/) > -1 || noProtocol) {
 		var _secure = window.location.href.search(/^https/) > -1 || adParams.forceHttps
@@ -46,7 +46,7 @@ export function matchProtocolTo(_url) {
 }
 
 // check version against
-export function isVersionOrNewer(version) {
+function isVersionOrNewer(version) {
 	const semver = version.split('.').map(function(v) {
 		return parseInt(v)
 	})

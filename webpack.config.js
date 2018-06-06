@@ -1,5 +1,6 @@
 const path = require('path')
 const UglifyJsPlugin = require('webpack').optimize.UglifyJsPlugin
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const babelOptions = {
 	presets: [
@@ -18,30 +19,28 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'ad-global.min.js',
-		libraryTarget: 'umd'
-	}
-	// copy UglifySettings
-	// plugins: [
-	// 	new UglifyJsPlugin({
-	// 		uglifyOptions: {
-	// 			drop_console: true,
-	// 			mangle: false
-	// 		}
-	// 	})
-	// ],
-	// module: {
-	// 	rules: [
-	// 		{
-	// 			test: /\.js$/,
-	// 			use: [
-	// 				{
-	// 					loader: 'babel-loader',
-	// 					options: {
-	// 						plugins: babelOptions.plugins
-	// 					}
-	// 				}
-	// 			]
-	// 		}
-	// 	]
-	// }
+		library: 'getDeployProfile',
+		libraryTarget: 'var'
+	},
+	module: {
+		rules: [
+			{
+				test: require.resolve(__dirname, 'index.js'),
+				use: 'imports-loader?this=>window'
+			},
+			{
+				test: require.resolve(__dirname, 'globals.js'),
+				use: 'exports-loader?getDeployProfile'
+			}
+		]
+	},
+	plugins: [
+		// 	new UglifyJsPlugin({
+		// 		uglifyOptions: {
+		// 			drop_console: true,
+		// 			mangle: false
+		// 		}
+		// 	})
+		new HtmlWebpackPlugin()
+	]
 }
