@@ -2,61 +2,46 @@ const path = require('path')
 const UglifyJsPlugin = require('webpack').optimize.UglifyJsPlugin
 
 const babelOptions = {
-	"presets": [
+	presets: [
 		[
-			"env",
+			'env',
 			{
-				"loose": true,
+				loose: true
 			}
 		]
 	],
-	"plugins": [
-		"transform-class-properties"
-	]
+	plugins: ['transform-class-properties']
 }
 
 module.exports = {
 	entry: path.resolve(__dirname, 'index.js'),
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'umd.min.js',
-		library: 'adLoad',
+		filename: 'ad-global.min.js',
 		libraryTarget: 'umd'
-	},
+	}
 	// copy UglifySettings
-	plugins: [
-		new UglifyJsPlugin({
-			uglifyOptions: {
-				drop_console: true
-			}
-		})
-	],
-	module: {
-		rules: [
-			// Rollup + Babel loader to generate smaller bundle, use one entry point
-			{
-				test: (request) => {
-					const isAdLoadIndex = request.includes('ad-load') && request.endsWith('index.js')
-					return isAdLoadIndex
-				},
-				use: [{
-					loader: 'webpack-rollup-babel-loader',
-					options: {
-						babelOptions: {
-							presets: babelOptions.presets,
-						},
-					}
-				}]
-			},
-			{
-				test: /\.js$/,
-				use: [{
-					loader: 'babel-loader',
-					options: {
-						plugins: babelOptions.plugins,
-					},
-				}]
-			}
-		]
-	},
+	// plugins: [
+	// 	new UglifyJsPlugin({
+	// 		uglifyOptions: {
+	// 			drop_console: true,
+	// 			mangle: false
+	// 		}
+	// 	})
+	// ],
+	// module: {
+	// 	rules: [
+	// 		{
+	// 			test: /\.js$/,
+	// 			use: [
+	// 				{
+	// 					loader: 'babel-loader',
+	// 					options: {
+	// 						plugins: babelOptions.plugins
+	// 					}
+	// 				}
+	// 			]
+	// 		}
+	// 	]
+	// }
 }
