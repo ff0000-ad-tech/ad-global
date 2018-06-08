@@ -1,7 +1,5 @@
 const path = require('path')
 const UglifyJsPlugin = require('webpack').optimize.UglifyJsPlugin
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const IndexPlugin = require('@ff0000-ad-tech/wp-plugin-index')
 const log = require('@ff0000-ad-tech/debug').debug('webpack.config.js')
 
 const babelOptions = {
@@ -18,13 +16,20 @@ const babelOptions = {
 
 module.exports = env => {
 	return {
-		entry: path.resolve(__dirname, 'src/ad-global.js'),
+		entry: path.resolve(__dirname, 'dist-entry.js'),
 		output: {
 			path: path.resolve(__dirname, 'dist'),
-			filename: 'ad-global.umd.js',
+			filename: 'ad-global.inline.js',
 			library: 'adGlobal',
 			libraryTarget: 'umd'
 		},
+		plugins: [
+			new UglifyJsPlugin({
+				uglifyOptions: {
+					drop_console: true
+				}
+			})
+		],
 		module: {
 			rules: [
 				{
@@ -39,25 +44,6 @@ module.exports = env => {
 					]
 				}
 			]
-		},
-		plugins: [
-			new UglifyJsPlugin({
-				uglifyOptions: {
-					drop_console: true
-				}
-			}),
-			new HtmlWebpackPlugin(),
-			new IndexPlugin(null, {
-				source: {
-					path: `./tmpl/ad-global.js`
-				},
-				inject: {
-					'ad-global': './dist/ad-global.umd.js'
-				},
-				output: {
-					path: `./dist/ad-global.inline.js`
-				}
-			})
-		]
+		}
 	}
 }
