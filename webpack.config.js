@@ -16,7 +16,7 @@ const babelOptions = {
 
 module.exports = env => {
 	return {
-		entry: path.resolve(__dirname, 'src/ad-global.js'),
+		entry: path.resolve(__dirname, 'dist-entry.js'),
 		output: {
 			path: path.resolve(__dirname, 'dist'),
 			filename: 'ad-global.inline.js',
