@@ -12,8 +12,8 @@ export function getDeployProfile(id) {
 	return false
 }
 
-export function getQueryParams(key) {
-	console.log('getQueryParams()', key)
+export function getQueryParams() {
+	console.log('getQueryParams()')
 	var queryParams = {}
 	var query = window.location.href.split('?')
 	if (query.length > 1) {
@@ -23,20 +23,7 @@ export function getQueryParams(key) {
 			if (keyValue.length == 2) queryParams[keyValue[0]] = decodeURIComponent(keyValue[1])
 		}
 	}
-	if (key) {
-		console.log('\t if 1')
-		return queryParams[key]
-	} else {
-		console.log('\t else 1')
-		if (Object.keys(queryParams).length > 0) {
-			console.log('\f if 2')
-			return queryParams
-		} else {
-			console.log('\t else 2')
-			return undefined
-		}
-	}
-	// return key ? queryParams[key] : Object.keys(queryParams).length > 0 ? queryParams : undefined
+	return queryParams
 }
 
 export function matchProtocolTo(_url) {
@@ -79,4 +66,8 @@ export function isVersionOrNewer(version) {
 		}
 	}
 	return false
+}
+
+export function TEST_TEST() {
+	return 'TEST TEST TEST'
 }
