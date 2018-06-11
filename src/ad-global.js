@@ -67,7 +67,3 @@ export function isVersionOrNewer(version) {
 	}
 	return false
 }
-
-export function TEST_TEST() {
-	return 'TEST TEST TEST'
-}
