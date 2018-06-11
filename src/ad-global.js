@@ -12,7 +12,7 @@ export function getDeployProfile(id) {
 	return false
 }
 
-export function getQueryParams() {
+export function getQueryParams(key) {
 	var queryParams = {}
 	var query = window.location.href.split('?')
 	if (query.length > 1) {
@@ -22,7 +22,7 @@ export function getQueryParams() {
 			if (keyValue.length == 2) queryParams[keyValue[0]] = decodeURIComponent(keyValue[1])
 		}
 	}
-	return queryParams
+	return key ? queryParams[key] : Object.keys(queryParams).length > 0 ? queryParams : undefined
 }
 
 export function matchProtocolTo(_url) {
