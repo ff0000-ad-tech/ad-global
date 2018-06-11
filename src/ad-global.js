@@ -13,6 +13,7 @@ export function getDeployProfile(id) {
 }
 
 export function getQueryParams(key) {
+	console.log('getQueryParams()', key)
 	var queryParams = {}
 	var query = window.location.href.split('?')
 	if (query.length > 1) {
@@ -22,7 +23,20 @@ export function getQueryParams(key) {
 			if (keyValue.length == 2) queryParams[keyValue[0]] = decodeURIComponent(keyValue[1])
 		}
 	}
-	return key ? queryParams[key] : Object.keys(queryParams).length > 0 ? queryParams : undefined
+	if (key) {
+		console.log('\t if 1')
+		return queryParams[key]
+	} else {
+		console.log('\t else 1')
+		if (Object.keys(queryParams).length > 0) {
+			console.log('\f if 2')
+			return queryParams
+		} else {
+			console.log('\t else 2')
+			return undefined
+		}
+	}
+	// return key ? queryParams[key] : Object.keys(queryParams).length > 0 ? queryParams : undefined
 }
 
 export function matchProtocolTo(_url) {
