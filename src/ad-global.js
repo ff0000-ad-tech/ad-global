@@ -6,6 +6,7 @@
 	*
 	*/
 export function getDeployProfile(id) {
+	console.log('ad-global > getDeployProfile()')
 	for (var i = 0; i < environments.length; i++) {
 		if (environments[i].id === id) return environments[i]
 	}
@@ -13,7 +14,7 @@ export function getDeployProfile(id) {
 }
 
 export function getQueryParams() {
-	console.log('getQueryParams()')
+	console.log('ad-global > getQueryParams()')
 	var queryParams = {}
 	var query = window.location.href.split('?')
 	if (query.length > 1) {
@@ -27,6 +28,7 @@ export function getQueryParams() {
 }
 
 export function matchProtocolTo(_url) {
+	console.log('ad-global > matchProtocolTo()')
 	var noProtocol = _url.search(/^\/\//) > -1
 	if (_url.search(/^http/) > -1 || noProtocol) {
 		var _secure = window.location.href.search(/^https/) > -1 || adParams.forceHttps
@@ -51,6 +53,7 @@ export function matchProtocolTo(_url) {
 
 // check version against
 export function isVersionOrNewer(version) {
+	console.log('ad-global > isVersionOrNewer()')
 	const semver = version.split('.').map(function(v) {
 		return parseInt(v)
 	})
