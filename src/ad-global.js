@@ -31,7 +31,7 @@ export function matchProtocolTo(_url) {
 	console.log('ad-global > matchProtocolTo()')
 	var noProtocol = _url.search(/^\/\//) > -1
 	if (_url.search(/^http/) > -1 || noProtocol) {
-		var _secure = window.location.href.search(/^https/) > -1 || adParams.forceHttps
+		var _secure = window.location.href.search(/^https/) > -1 || (adParams && adParams.forceHttps)
 		var _httpProtocol = _secure ? 'https://' : 'http://'
 		if (noProtocol) {
 			_url = _url.replace(/^\/\//, _httpProtocol)
