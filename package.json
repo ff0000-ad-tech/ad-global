@@ -11,6 +11,10 @@
 		"localhost": "npx http-server",
 		"pub": "np"
 	},
+	"engines": {
+		"node": ">=9.8.0",
+		"npm": ">=6.0.0"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/ff0000-ad-tech/ad-global.git"
