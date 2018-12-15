@@ -38,7 +38,7 @@ module.exports = env => {
 						{
 							loader: 'babel-loader',
 							options: {
-								plugins: babelOptions.plugins
+								presets: ['@babel/preset-env']
 							}
 						}
 					]
