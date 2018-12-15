@@ -2,18 +2,6 @@ const path = require('path')
 const UglifyJsPlugin = require('webpack').optimize.UglifyJsPlugin
 const log = require('@ff0000-ad-tech/debug').debug('webpack.config.js')
 
-const babelOptions = {
-	presets: [
-		[
-			'env',
-			{
-				loose: true
-			}
-		]
-	],
-	plugins: ['transform-class-properties']
-}
-
 module.exports = env => {
 	return {
 		entry: path.resolve(__dirname, 'dist-entry.js'),
