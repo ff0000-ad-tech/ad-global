@@ -27,6 +27,7 @@
 		"@babel/preset-env": "^7.2.0",
 		"@ff0000-ad-tech/debug": "^4.0.2",
 		"@ff0000-ad-tech/wp-plugin-index": "^1.0.8",
+		"babel-eslint": "^10.0.1",
 		"babel-loader": "^8.0.4",
 		"eslint": "^4.16.0",
 		"eslint-config-prettier": "^2.9.0",
