@@ -7,7 +7,7 @@
 	"description": "",
 	"main": "./src/ad-global.js",
 	"scripts": {
-		"dist": "npx webpack",
+		"dist": "rollup -c rollup.config.js",
 		"localhost": "npx http-server",
 		"pub": "np"
 	},
@@ -26,17 +26,16 @@
 		"@babel/core": "^7.2.0",
 		"@babel/preset-env": "^7.2.0",
 		"@ff0000-ad-tech/debug": "^4.0.2",
-		"@ff0000-ad-tech/wp-plugin-index": "^1.0.8",
 		"babel-eslint": "^10.0.1",
 		"babel-loader": "^8.0.4",
 		"eslint": "^4.16.0",
 		"eslint-config-prettier": "^2.9.0",
 		"eslint-plugin-prettier": "^2.5.0",
-		"html-webpack-plugin": "^3.2.0",
 		"http-server": "^0.11.1",
 		"np": "^2.19.0",
 		"prettier": "^1.10.2",
-		"uglify-es": "^3.3.9",
-		"webpack": "^3.10.0"
+		"rollup": "^1.27.8",
+		"rollup-plugin-babel": "^4.3.3",
+		"rollup-plugin-terser": "^5.1.2"
 	}
 }
